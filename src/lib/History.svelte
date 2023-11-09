@@ -61,7 +61,9 @@
     {/if}
     <label
         for="my_modal_6"
-        class="btn btn-primary rounded btn-xs {list.length > 0 ? 'w-full' : ''}"
+        class="btn btn-primary rounded btn-sm {list.length == 0
+            ? 'w-full'
+            : ''}"
     >
         +
     </label>
@@ -134,7 +136,7 @@
                     <span class="label-text">Amount</span>
                 </label>
                 <input
-                    type="number"
+                    type="tel"
                     placeholder="Enter Amount"
                     class="input input-bordered w-full"
                     bind:value={amount}

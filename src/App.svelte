@@ -1,5 +1,5 @@
 <script>
-  import { Toaster } from "svelte-sonner";
+  import { Toaster, toast } from "svelte-sonner";
   import Header from "./lib/Header.svelte";
   import History from "./lib/History.svelte";
   import { onMount } from "svelte";
@@ -21,7 +21,7 @@
   onMount(() => {
     let data = JSON.parse(localStorage.getItem("expense-tracker-record"));
     if (data) {
-      list = data;
+      list = data.sort((date1, date2) => date1 - date2);
     }
   });
 
@@ -35,15 +35,18 @@
   }
 
   function deleteItem(data) {
-    let id = data.id;
+    let id = data.detail;
+    list = list.filter((f) => f.id != id);
+    setToLocalStorage();
+    toast.success("Deleted");
   }
 </script>
 
 <main class="grid place-content-center my-10">
-  <div class="w-64">
+  <div class="w-72">
     <Header {expense} {total} {income} />
     <History {list} on:addNewITem={add} on:delete={deleteItem} />
   </div>
 </main>
 
-<Toaster position="top-left" richColors />
+<Toaster position="top-center" richColors />
