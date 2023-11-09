@@ -55,11 +55,16 @@
     }
 </script>
 
-<div class="flex justify-between items-baseline">
+<div class="flex justify-between items-baseline mt-5">
     {#if list.length > 0}
-        <h1 class="font-semibold mt-5">History</h1>
+        <h1 class="font-semibold">History</h1>
     {/if}
-    <label for="my_modal_6" class="btn btn-primary rounded btn-xs"> + </label>
+    <label
+        for="my_modal_6"
+        class="btn btn-primary rounded btn-xs {list.length > 0 ? 'w-full' : ''}"
+    >
+        +
+    </label>
 </div>
 {#if list.length > 0}
     <hr class="bg-gray-200 p-[.5px] mb-3 mt-1" />
