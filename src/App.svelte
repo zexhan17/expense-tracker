@@ -44,7 +44,7 @@
 
 <main class="grid place-content-center my-10">
   <div class="w-72">
-    <Header {expense} {total} {income} />
+    <Header {expense} {total} {income} {list} />
     <History {list} on:addNewITem={add} on:delete={deleteItem} />
   </div>
 </main>

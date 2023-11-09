@@ -5,17 +5,18 @@
     export let income = "";
     export let expense = "";
     export let total = 0;
+    export let list;
 </script>
 
 <h2 class="font-bold mb-5 text-xl uppercase text-center">
-    Expense Tracker <Info />
+    Expense Tracker <Info {list} />
 </h2>
 <span class="flex justify-between items-center">
     <h3 class="font-medium uppercase">balance</h3>
     <h1 class="font-semibold text-2xl"><Amount {total} /></h1>
 </span>
 
-<div class="mt-1 shadow bg-white rounded p-4 flex justify-evenly items-center">
+<div class="mt-1 shadow rounded p-4 flex justify-evenly items-center">
     <div>
         <span class="block font-semibold">INCOME</span>
         <span class="block font-semibold text-green-400">+{income}</span>
