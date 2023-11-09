@@ -88,7 +88,7 @@
 </script>
 
 <div class="dropdown dropdown-end">
-    <label tabindex="0" class="bg-gray-100 px-2 rounded">
+    <label tabindex="0">
         {total}
     </label>
     <div

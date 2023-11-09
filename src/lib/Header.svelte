@@ -16,7 +16,7 @@
     <h1 class="font-semibold text-2xl"><Amount {total} /></h1>
 </span>
 
-<div class="mt-1 shadow rounded p-4 flex justify-evenly items-center">
+<div class="mt-1 shadow rounded p-4 flex justify-evenly items-center border">
     <div>
         <span class="block font-semibold">INCOME</span>
         <span class="block font-semibold text-green-400">+{income}</span>

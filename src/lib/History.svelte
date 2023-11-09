@@ -74,9 +74,10 @@
     <ul class="space-y-3">
         {#each list as e}
             <li
-                class="p-2 space-y-1 shadow rounded border-l-4 {e.amount > 0
-                    ? 'border-green-400'
-                    : 'border-red-400'}"
+                class="p-2 space-y-1 shadow rounded border border-l-4 {e.amount >
+                0
+                    ? 'border-l-green-400'
+                    : 'border-l-red-400'}"
             >
                 <div class="flex justify-between items-top">
                     <span>{e.text}</span>
