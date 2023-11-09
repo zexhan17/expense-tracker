@@ -75,7 +75,7 @@
         </div>
 
         <div class="modal-action">
-            <label for="my_modal_6" class="btn">Close!</label>
+            <label for="my_modal" class="btn">Close!</label>
         </div>
     </div>
 </div>
