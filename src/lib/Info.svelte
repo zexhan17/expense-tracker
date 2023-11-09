@@ -1,4 +1,4 @@
-<label for="my_modal_6" class="btn btn-ghost btn-xs">
+<label for="my_modal" class="btn btn-ghost btn-xs">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -14,7 +14,7 @@
 </label>
 
 <!-- Put this part before </body> tag -->
-<input type="checkbox" id="my_modal_6" class="modal-toggle" />
+<input type="checkbox" id="my_modal" class="modal-toggle" />
 <div class="modal">
     <div class="modal-box">
         <div class="text-sm font-normal">
