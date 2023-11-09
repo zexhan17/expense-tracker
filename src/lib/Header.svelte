@@ -11,7 +11,7 @@
     Expense Tracker <Info />
 </h2>
 <span class="flex justify-between items-center">
-    <h3 class="font-medium">Total BALANCE</h3>
+    <h3 class="font-medium uppercase">balance</h3>
     <h1 class="font-semibold text-2xl"><Amount {total} /></h1>
 </span>
 
