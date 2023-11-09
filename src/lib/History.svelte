@@ -141,20 +141,15 @@
                     class="input input-bordered w-full"
                     bind:value={amt}
                 />
-                <label class="label">
-                    <span class="label-text"
-                        >positive - income, negative - expense</span
-                    >
-                </label>
             </div>
             <div class="flex gap-3">
                 <button
                     class="btn btn-outline"
-                    on:click={() => save(parseFloat(amt))}>income</button
+                    on:click={() => save(parseFloat(amt))}>+income</button
                 >
                 <button
                     class="btn btn-outline"
-                    on:click={() => save(-parseFloat(amt))}>expense</button
+                    on:click={() => save(-parseFloat(amt))}>-expense</button
                 >
             </div>
         </div>
