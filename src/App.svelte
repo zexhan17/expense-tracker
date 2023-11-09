@@ -21,12 +21,12 @@
   onMount(() => {
     let data = JSON.parse(localStorage.getItem("expense-tracker-record"));
     if (data) {
-      list = data.sort((date1, date2) => date1 - date2);
+      list = data;
     }
   });
 
   function add(data) {
-    list = [...list, data.detail];
+    list = [data.detail, ...list];
     setToLocalStorage();
   }
 
