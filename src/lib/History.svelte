@@ -5,23 +5,23 @@
     const dispatch = createEventDispatcher();
 
     let text = "";
-    let amount = "";
+    let amt = "";
 
-    function save() {
-        if (text == "" || amount == "") {
+    function save(amount) {
+        if (text == "" || amount == 0) {
             toast.warning("Both fields are required");
             return;
         }
         const data = {
             id: crypto.randomUUID(),
             text,
-            amount: parseFloat(amount),
+            amount,
             date: new Date(),
         };
         dispatch("addNewITem", data);
 
         text = "";
-        amount = "";
+        amt = "";
 
         toast.success("success!");
     }
@@ -136,10 +136,10 @@
                     <span class="label-text">Amount</span>
                 </label>
                 <input
-                    type="tel"
+                    type="number"
                     placeholder="Enter Amount"
                     class="input input-bordered w-full"
-                    bind:value={amount}
+                    bind:value={amt}
                 />
                 <label class="label">
                     <span class="label-text"
@@ -147,7 +147,16 @@
                     >
                 </label>
             </div>
-            <button class="btn btn-neutral w-full" on:click={save}>SAVE</button>
+            <div class="flex gap-3">
+                <button
+                    class="btn btn-outline"
+                    on:click={() => save(parseFloat(amt))}>income</button
+                >
+                <button
+                    class="btn btn-outline"
+                    on:click={() => save(-parseFloat(amt))}>expense</button
+                >
+            </div>
         </div>
 
         <div class="modal-action">
