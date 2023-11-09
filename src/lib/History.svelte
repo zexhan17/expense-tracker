@@ -55,13 +55,13 @@
     }
 </script>
 
-{#if list.length > 0}
-    <div class="flex justify-between items-baseline">
+<div class="flex justify-between items-baseline">
+    {#if list.length > 0}
         <h1 class="font-semibold mt-5">History</h1>
-        <label for="my_modal_6" class="btn btn-primary rounded btn-xs">
-            +
-        </label>
-    </div>
+    {/if}
+    <label for="my_modal_6" class="btn btn-primary rounded btn-xs"> + </label>
+</div>
+{#if list.length > 0}
     <hr class="bg-gray-200 p-[.5px] mb-3 mt-1" />
 
     <ul class="space-y-3">
