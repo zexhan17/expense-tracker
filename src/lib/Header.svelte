@@ -8,7 +8,9 @@
     export let list;
 </script>
 
-<h2 class="font-bold mb-5 text-xl uppercase text-center">
+<h2
+    class="font-bold my-10 text-xl uppercase flex items-center place-content-center"
+>
     Expense Tracker <Info {list} />
 </h2>
 <span class="flex justify-between items-center">

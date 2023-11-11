@@ -42,11 +42,11 @@
   }
 </script>
 
-<main class="grid place-content-center my-10">
+<main class="grid place-content-center mb-10">
   <div class="w-72">
     <Header {expense} {total} {income} {list} />
     <History {list} on:addNewITem={add} on:delete={deleteItem} />
   </div>
 </main>
 
-<Toaster position="top-center" richColors />
+<Toaster position="top-center" richColors duration={1000} />

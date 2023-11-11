@@ -3,9 +3,32 @@
 
     export let list;
 
+    let info = true;
     let imp = false;
-    let backup = false;
+    let exp = false;
     let value = "";
+
+    function toggle(n) {
+        switch (n) {
+            case 1:
+                info = true;
+                imp = false;
+                exp = false;
+                break;
+
+            case 2:
+                info = false;
+                exp = true;
+                imp = false;
+                break;
+
+            case 3:
+                info = false;
+                exp = false;
+                imp = true;
+                break;
+        }
+    }
 
     function exportText() {
         const rec = localStorage.getItem("expense-tracker-record");
@@ -30,7 +53,8 @@
     }
 </script>
 
-<label for="my_modal" class="btn btn-ghost btn-xs">
+<!-- The button to open modal -->
+<label for="info" class="cursor-pointer ml-1">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -46,13 +70,13 @@
 </label>
 
 <!-- Put this part before </body> tag -->
-<input type="checkbox" id="my_modal" class="modal-toggle" />
+<input type="checkbox" id="info" class="modal-toggle" />
 <div class="modal">
     <div class="modal-box">
-        {#if imp == false && backup == false}
-            <div class="text-sm font-normal">
+        {#if info}
+            <div class="text-sm font-normal text-center">
                 <span class="block">
-                    Save data in your browser not in cloud database.
+                    Save data in your mobile browser not in cloud database.
                 </span>
                 <span
                     class="mt-2 mb-8 block px-1 bg-gray-300 w-fit mx-auto rounded"
@@ -108,22 +132,23 @@
             </div>
         {/if}
 
-        {#if backup == true && imp == false}
+        {#if exp}
             <div class="text-sm font-normal">
-                <span class="block mb-2">
+                <span class="block">
                     In case you want to reset your browser or want to transfer
                     your record to other browser you just have to export it from
                     here and import there. Export button copy all record into
                     your clipboard you can save it anywhere.
                 </span>
 
-                <div class="flex items-center justify-evenly">
-                    <button class="btn" on:click={exportText}>export</button>
-                </div>
+                <button
+                    class="btn btn-primary btn-sm mt-3"
+                    on:click={exportText}>export</button
+                >
             </div>
         {/if}
 
-        {#if imp == true && backup == false}
+        {#if imp}
             <div class="text-sm font-normal">
                 <div class="form-control">
                     <label class="label">
@@ -141,48 +166,32 @@
             </div>
         {/if}
 
-        <div class="modal-action flex justify-between items-center">
-            <div>
-                {#if imp == false && backup == false}
-                    <span
-                        on:click={() => {
-                            backup = true;
-                            imp = false;
-                        }}
-                        class="underline font-normal text-sm cursor-pointer"
-                    >
-                        backup
-                    </span>
-                {/if}
-                {#if backup || imp}
-                    <span
-                        class="underline font-normal text-sm cursor-pointer ml-3"
-                        on:click={() => {
-                            imp = false;
-                            backup = false;
-                        }}>back</span
-                    >
-                    {#if backup}
-                        <span
-                            class="underline font-normal text-sm cursor-pointer ml-3"
-                            on:click={() => {
-                                imp = true;
-                                backup = false;
-                            }}
-                        >
-                            import
-                        </span>
-                    {/if}
-                {/if}
-            </div>
-            <label
-                for="my_modal"
-                class="btn"
-                on:click={() => {
-                    imp = false;
-                    backup = false;
-                }}>Close!</label
+        <div class="flex justify-evenly items-baseline mt-8 pt-5 border-t">
+            <span
+                on:click={() => toggle(1)}
+                class="{info
+                    ? 'underline'
+                    : ''} font-normal text-sm cursor-pointer"
             >
+                INFO
+            </span>
+            <span
+                class="{exp
+                    ? 'underline'
+                    : ''} font-normal text-sm cursor-pointer ml-3"
+                on:click={() => toggle(2)}
+            >
+                EXPORT
+            </span>
+            <span
+                class="{imp
+                    ? 'underline'
+                    : ''} font-normal text-sm cursor-pointer ml-3"
+                on:click={() => toggle(3)}
+            >
+                IMPORT
+            </span>
         </div>
     </div>
+    <label class="modal-backdrop" for="info">Close</label>
 </div>
