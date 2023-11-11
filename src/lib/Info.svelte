@@ -45,11 +45,18 @@
             return;
         }
 
-        let arr = JSON.parse(value);
-        let data = [...arr, ...list];
-        localStorage.setItem("expense-tracker-record", JSON.stringify(data));
-        toast.success("successfully imported record");
-        value = "";
+        try {
+            let arr = JSON.parse(value);
+            let data = [...arr, ...list];
+            localStorage.setItem(
+                "expense-tracker-record",
+                JSON.stringify(data)
+            );
+            toast.success("successfully imported record");
+            value = "";
+        } catch (error) {
+            toast.error("format not correct");
+        }
     }
 </script>
 
