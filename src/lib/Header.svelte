@@ -1,6 +1,7 @@
 <script>
     import Amount from "./Amount.svelte";
     import Info from "./Info.svelte";
+    import Wallet from "./Wallet.svelte";
 
     export let income = "";
     export let expense = "";
@@ -8,11 +9,11 @@
     export let list;
 </script>
 
-<h2
-    class="font-bold my-10 text-xl uppercase flex items-center place-content-center"
->
-    Expense Tracker <Info {list} />
-</h2>
+<div class="flex items-center place-content-center">
+    <Wallet />
+    <Info {list} />
+</div>
+
 <span class="flex justify-between items-center">
     <h3 class="font-medium uppercase">balance</h3>
     <h1 class="font-semibold text-2xl"><Amount {total} /></h1>
