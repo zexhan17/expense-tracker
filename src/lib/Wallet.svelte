@@ -7,8 +7,8 @@
         value = localStorage.getItem("wallet");
     });
 
-    function handleChange(value) {
-        localStorage.setItem("wallet", String(value));
+    function handleChange(e) {
+        localStorage.setItem("wallet", String(e.target.value));
     }
 </script>
 
@@ -38,7 +38,7 @@
                 bind:value
                 placeholder="Enter text"
                 class="input input-bordered w-full"
-                on:input={(e) => handleChange(e.target.value)}
+                on:input={(e) => handleChange(e)}
             />
         </div>
 

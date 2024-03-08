@@ -61,7 +61,7 @@
     {/if}
     <label
         for="my_modal_6"
-        class="btn btn-primary rounded btn-sm {list.length == 0
+        class="btn btn-primary rounded btn-xs {list.length == 0
             ? 'w-full'
             : ''}"
     >
