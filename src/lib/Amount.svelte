@@ -87,13 +87,16 @@
     }
 </script>
 
-<div class="dropdown dropdown-end">
-    <label tabindex="0">
+<div class="dropdown dropdown-top dropdown-left">
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+    <!-- svelte-ignore a11y-label-has-associated-control -->
+    <label tabindex="0" class="hover:cursor-pointer {total ? 'underline' : ''}">
         {total}
     </label>
+    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
     <div
         tabindex="0"
-        class="card compact dropdown-content z-[1] shadow bg-base-100 rounded-box w-64"
+        class="card compact dropdown-content z-[1] shadow bg-base-300 rounded-box w-64"
     >
         <div class="card-body">
             {convert(total)}
