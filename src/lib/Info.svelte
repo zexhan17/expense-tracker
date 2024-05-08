@@ -50,7 +50,7 @@
             let data = [...arr, ...list];
             localStorage.setItem(
                 "expense-tracker-record",
-                JSON.stringify(data)
+                JSON.stringify(data),
             );
             toast.success("successfully imported record");
             value = "";
@@ -132,7 +132,7 @@
                     </a>
                     <a
                         target="_blank"
-                        href="https://portfolio-zexhan17.vercel.app/"
+                        href="https://portfolio-zexhan17s-projects.vercel.app"
                         download>Portfolio</a
                     >
                 </div>
