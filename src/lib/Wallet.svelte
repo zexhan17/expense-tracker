@@ -1,9 +1,17 @@
 <script>
     import { onMount } from "svelte";
-    import { openDatabase, fetchAllRows, addRow, deleteRow } from "./db";
+    import {
+        openDatabase,
+        fetchAllRows,
+        addRow,
+        updateRow,
+        deleteRow,
+        clearStore,
+    } from "./db";
 
     let db;
-    $: wallets = [];
+    let wallets = [];
+    let formState = { id: null, name: "", amount: "" };
     const storeName = "wallets";
 
     onMount(async () => {
@@ -12,18 +20,29 @@
     });
 
     async function handleSubmit(e) {
-        const formData = new FormData(e.target);
-        const name = formData.get("name");
-        const amount = formData.get("amount");
-        const data = {
-            id: wallets.length + 1,
-            name,
-            amount,
-        };
+        e.preventDefault();
+        const { id, name, amount } = formState;
+        const data = { name, amount: Number(amount) };
 
-        await addRow(db, storeName, data);
+        if (id !== null) {
+            // Update existing wallet
+            data.id = id;
+            await updateRow(db, storeName, data);
+        } else {
+            // Add new wallet (ID will be auto-incremented by IndexedDB)
+            await addRow(db, storeName, data);
+        }
+
         wallets = await fetchAllRows(db, storeName);
-        e.target.reset();
+        resetForm();
+    }
+
+    function resetForm() {
+        formState = { id: null, name: "", amount: "" };
+    }
+
+    function populateForm(wallet) {
+        formState = { ...wallet };
     }
 
     async function deleteWallet(id) {
@@ -44,7 +63,7 @@
 <div class="modal" role="dialog">
     <div class="modal-box">
         <h3 class="font-bold text-lg">Hidden Wallets!</h3>
-        <p class="pb-4">These records is not being used in any calculation.</p>
+        <p class="pb-4">These records are not being used in any calculation.</p>
 
         <form
             on:submit|preventDefault={handleSubmit}
@@ -56,36 +75,42 @@
                     class="input input-bordered w-full"
                     type="text"
                     required
+                    bind:value={formState.name}
                     name="name"
                 />
             </label>
 
-            <label for="value">
+            <label for="amount">
                 Wallet Amount
                 <input
                     class="input input-bordered w-full"
                     type="number"
                     required
+                    bind:value={formState.amount}
                     name="amount"
                 />
             </label>
 
             <button class="btn btn-primary" type="submit">
-                Add new Wallet
+                {formState.id !== null ? "Update Wallet" : "Add New Wallet"}
             </button>
         </form>
 
         <div class="mt-5 max-h-52 overflow-y-auto">
-            <h1>Wallets</h1>
+            <h1 class="flex justify-between flex-wrap">
+                Wallets <small>double tap on record to udpate it.</small>
+            </h1>
             {#each wallets as wallet}
                 <div
+                    on:dblclick={() => populateForm(wallet)}
                     class="p-2 border-b border-base-300 rounded flex items-center justify-between"
                 >
                     <span>{wallet.name}: {wallet.amount}</span>
                     <button
                         on:click={() => deleteWallet(wallet.id)}
                         class="text-red-500"
-                        ><svg
+                    >
+                        <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"

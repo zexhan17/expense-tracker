@@ -109,3 +109,20 @@ export function fetchAllRows(db, storeName) {
         };
     });
 }
+
+// clear store
+export async function clearStore(db, storeName) {
+    return new Promise((resolve, reject) => {
+        const transaction = db.transaction([storeName], 'readwrite');
+        const store = transaction.objectStore(storeName);
+        const request = store.clear();
+
+        request.onsuccess = () => {
+            resolve();
+        };
+
+        request.onerror = (event) => {
+            reject(event.target.error);
+        };
+    });
+}
