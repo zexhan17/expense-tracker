@@ -43,7 +43,7 @@
 </script>
 
 <main class="grid place-content-center mb-10">
-  <div class="w-72">
+  <div class="w-80">
     <Header {expense} {total} {income} {list} />
     <History {list} on:addNewITem={add} on:delete={deleteItem} />
   </div>
